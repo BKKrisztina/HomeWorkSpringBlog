@@ -1,7 +1,5 @@
 package application.models;
-
 import org.hibernate.annotations.CreationTimestamp;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -19,8 +17,9 @@ public class Blog {
     @Column(name = "TEMPLATE", nullable = false, unique = true, length = 50)
     private String blogTemplateName;
 
-    @Column(name = "TEXT")
+    @Column(name = "TEXT", length = 10000)
     private String blogText;
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     @ManyToOne
@@ -103,5 +102,13 @@ public class Blog {
 
     public void setCreationTime(LocalDateTime creationTime) {
         this.creationTime = creationTime;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

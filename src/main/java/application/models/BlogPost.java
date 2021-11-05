@@ -15,6 +15,7 @@ public class BlogPost {
     private long blogPostID;
     @Column(name = "TEXT")
     private String blogPostText;
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     @ManyToOne
@@ -79,5 +80,13 @@ public class BlogPost {
 
     public void setCommentList(List<Comment> commentList) {
         this.commentList = commentList;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

@@ -23,11 +23,10 @@ public class WebSecConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/**").permitAll();
-/*                        .antMatchers("/users").hasAuthority("DELETE")
-                .antMatchers("/**").authenticated()
+                .antMatchers("/","/home","/register").permitAll()
+                .antMatchers("/users").hasAuthority("DELETE")
                 .antMatchers("/loginsuccess").authenticated()
-                .antMatchers("/blogs").authenticated()
-                .antMatchers("/newblog").authenticated();*/
+                .antMatchers("/blogs","/blogposts","/comments").authenticated()
+                .antMatchers("/newblog", "/newblogpost","/newcomment").authenticated();
     }
 }

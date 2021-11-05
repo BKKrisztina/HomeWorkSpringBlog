@@ -21,6 +21,7 @@ public class BlogUserService implements UserDetailsService {
 
     private PasswordEncoder pwEncoder;
 
+    @PersistenceContext
     private EntityManager em;
 
     @Autowired
@@ -61,21 +62,15 @@ public class BlogUserService implements UserDetailsService {
         }
     }
     @Transactional
-    public boolean registerUsers(BlogUser user){
-        try{
-            String userPw = pwEncoder.encode("taCyssup");
-            String adminPw = pwEncoder.encode("peehSkcalb");
-
-            BlogUser cicamica = new BlogUser("PussyCat", userPw,"kiscica@citromail.hu", UserRole.USER);
-            BlogUser feketebari = new BlogUser("BlackSheep",adminPw,"feketebari@progmatic.hu",UserRole.ADMIN);
-
-            em.persist(cicamica);
-            em.persist(feketebari);
-
-        } catch (Exception e){
+    public boolean registerUsers(BlogUser user) {
+        try {
+            user.setAuthority(UserRole.USER);
+            user.setPassword(pwEncoder.encode(user.getPassword()));
+            userRepo.save(user);
+            return true;
+        } catch (Exception e) {
             return false;
         }
-        return true;
     }
 
     @Transactional

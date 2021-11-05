@@ -2,9 +2,8 @@ package application.controllers;
 import application.models.BlogPost;
 import application.services.BlogPostService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,4 +21,12 @@ public class BlogPostController {
     public @ResponseBody List<BlogPost> getAllBlogPerUser(@PathVariable("username") String poster){
         return service.getAllBlogPostsPerUser(poster);}
 
+    @PostMapping(value = "/newblogpost", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public String createblogpost(@RequestBody BlogPost blogPost){
+        boolean registered = service.createNewBlogPost(blogPost);
+        if (registered){
+            return  "ok, well done";
+        }
+        return "not ok, try harder";
+    }
 }

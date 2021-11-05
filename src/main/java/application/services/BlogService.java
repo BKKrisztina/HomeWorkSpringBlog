@@ -1,10 +1,9 @@
 package application.services;
-
 import application.jpaRepos.BlogRepo;
 import application.models.Blog;
+import application.models.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -21,6 +20,7 @@ public class BlogService {
     @Transactional
     public boolean createNewBlog(Blog blog) {
         try {
+            blog.setStatus(Status.PUBLISHED);
             blogRepo.save(blog);
             return true;
         } catch (Exception e) {

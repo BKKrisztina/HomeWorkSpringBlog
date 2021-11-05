@@ -19,6 +19,9 @@ public class Comment {
     //@Column(name = "COMMENTER")
     private BlogUser commenter;
 
+    @Enumerated
+    private Status status;
+
     @CreationTimestamp
     @Column(name = "CREATED")
     private LocalDateTime creationTime;
@@ -28,7 +31,7 @@ public class Comment {
 
     @ManyToOne
     private Comment historyCommentID;
-    private Status status;
+
 
     @OneToMany
     private List<Comment> commentList;
@@ -96,5 +99,13 @@ public class Comment {
 
     public void setCommentList(List<Comment> commentList) {
         this.commentList = commentList;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

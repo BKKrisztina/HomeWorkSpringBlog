@@ -1,6 +1,4 @@
 package application.jpaRepos;
-
-import application.models.BlogUser;
 import application.models.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
 

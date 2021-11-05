@@ -1,8 +1,6 @@
 package application.controllers;
-
 import application.models.Blog;
 import application.services.BlogService;
-import application.services.BlogUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -27,8 +25,7 @@ public class BlogController {
     }
 
     @GetMapping("/blogs")
-    public @ResponseBody
-    List<Blog> getAllBlogs(){return service.getAllBlogs();}
+    public @ResponseBody List<Blog> getAllBlogs(){return service.getAllBlogs();}
 
     @GetMapping("/blogs/{username}")
     public @ResponseBody List<Blog> getAllBlogPerUser(@PathVariable("username") String blogger){
